@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "08773775-30a5-4d55-be3f-420e83962bae"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.leedongwook.chat",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.leedongwook.chat"
+    }
+  }
+}
