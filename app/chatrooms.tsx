@@ -7,10 +7,10 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import axiosInstance from "../api/axiosInstance";
-import { AuthContext } from "../context/AuthContext";
+import axiosInstance from "@/src/api/axiosInstance";
+import { AuthContext } from "@/src/context/AuthContext";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "@/App";
 import { useNavigation } from "@react-navigation/native";
 
 type NavigationProp = NativeStackNavigationProp<

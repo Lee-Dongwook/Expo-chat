@@ -9,9 +9,9 @@ import {
   Alert,
 } from "react-native";
 import { io, Socket } from "socket.io-client";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "@/src/context/AuthContext";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "@/App";
 
 type ChatRoomRouteProp = RouteProp<RootStackParamList, "ChatRoom">;
 

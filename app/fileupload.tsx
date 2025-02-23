@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import axiosInstance from "../api/axiosInstance";
+import axiosInstance from "@/src/api/axiosInstance";
 
 export default function FileUploadScreen() {
   const [imageUri, setImageUri] = useState<string | null>(null);
