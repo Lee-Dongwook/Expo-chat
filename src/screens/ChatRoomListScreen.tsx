@@ -7,7 +7,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 import { AuthContext } from "../context/AuthContext";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
@@ -27,7 +27,7 @@ export default function ChatRoomListScreen() {
 
   const fetchRooms = async () => {
     try {
-      const response = await axios.get("http://<SERVER_IP>:4000/rooms", {
+      const response = await axiosInstance.get("/rooms", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRooms(response.data);
@@ -39,8 +39,8 @@ export default function ChatRoomListScreen() {
   const createRoom = async () => {
     if (!newRoomName) return;
     try {
-      const response = await axios.post(
-        "http://localhost:4000/rooms",
+      const response = await axiosInstance.post(
+        "/rooms",
         { name: newRoomName, type: roomType },
         { headers: { Authorization: `Bearer ${token}` } }
       );

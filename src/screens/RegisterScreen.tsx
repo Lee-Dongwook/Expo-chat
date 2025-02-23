@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 import { AuthContext } from "../context/AuthContext";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
@@ -16,7 +16,7 @@ export default function RegisterScreen() {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/auth/register", {
+      const response = await axiosInstance.post("/auth/register", {
         username,
         password,
       });

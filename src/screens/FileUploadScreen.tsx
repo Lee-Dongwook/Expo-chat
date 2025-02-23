@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 
 export default function FileUploadScreen() {
   const [imageUri, setImageUri] = useState<string | null>(null);
@@ -31,13 +31,9 @@ export default function FileUploadScreen() {
       type: "image/jpeg",
     } as any);
     try {
-      const response = await axios.post(
-        "http://<SERVER_IP>:4000/files/upload",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const response = await axiosInstance.post("/files/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       setUploadedUrl(response.data.url);
       Alert.alert("업로드 성공", "파일이 업로드되었습니다.");
     } catch (error) {
