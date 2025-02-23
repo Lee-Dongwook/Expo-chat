@@ -1,9 +1,26 @@
+// src/socket/socketHandler.ts
 import { Server, Socket } from "socket.io";
+import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import { ChatMessage } from "../models/chat";
 import chatRooms from "../controllers/roomController";
 
+const SECRET_KEY = "your_secret_key_here";
+
 export const initializeSocket = (io: Server) => {
+  io.use((socket: Socket, next) => {
+    const token = socket.handshake.auth.token;
+    if (token) {
+      jwt.verify(token, SECRET_KEY, (err: any, decoded: any) => {
+        if (err) return next(new Error("Authentication error"));
+        socket.data.user = decoded;
+        next();
+      });
+    } else {
+      next(new Error("Authentication error"));
+    }
+  });
+
   io.on("connection", (socket: Socket) => {
     console.log(`클라이언트 연결됨: ${socket.id}`);
 

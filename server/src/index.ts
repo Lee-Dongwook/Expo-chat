@@ -6,6 +6,7 @@ import { Server as SocketIOServer } from "socket.io";
 import authRoutes from "./routes/authRoutes";
 import roomRoutes from "./routes/roomRoutes";
 import { initializeSocket } from "./socket/socketHandler";
+import { authenticateJWT } from "./middleware/authMiddleware";
 
 const app: Application = express();
 app.use(cors());
@@ -16,7 +17,8 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/auth", authRoutes);
-app.use("/rooms", roomRoutes);
+
+app.use("/rooms", authenticateJWT, roomRoutes);
 
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
